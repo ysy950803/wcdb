@@ -1,7 +1,7 @@
 apply plugin: 'com.android.library'
-apply from: rootProject.file('gradle/WeChatPublish.gradle')
+//apply from: rootProject.file('gradle/WeChatPublish.gradle')
 
-artifactId = 'wcdb-android'
+//artifactId = 'wcdb-android'
 
 int ndkVersion() {
     if (android.ndkDirectory != null) {
@@ -91,16 +91,16 @@ android {
     }
 }
 
-wechatPublish {
-    publishAllVariants true
-
-    publishToBintray {
-        repo = 'wcdb'
-        name = 'wcdb-android'
-        desc = ''
-        websiteUrl = 'https://github.com/Tencent/wcdb'
-        issueTrackerUrl = 'https://github.com/Tencent/wcdb/issues'
-        vcsUrl = 'https://github.com/Tencent/wcdb.git'
-        licenses = ['BSD 3-Clause']
-    }
-}
+//wechatPublish {
+//    publishAllVariants true
+//
+//    publishToBintray {
+//        repo = 'wcdb'
+//        name = 'wcdb-android'
+//        desc = ''
+//        websiteUrl = 'https://github.com/Tencent/wcdb'
+//        issueTrackerUrl = 'https://github.com/Tencent/wcdb/issues'
+//        vcsUrl = 'https://github.com/Tencent/wcdb.git'
+//        licenses = ['BSD 3-Clause']
+//    }
+//}

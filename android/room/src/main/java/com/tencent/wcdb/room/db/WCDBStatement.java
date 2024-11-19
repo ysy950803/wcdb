@@ -16,8 +16,9 @@
 
 package com.tencent.wcdb.room.db;
 
-import android.arch.persistence.db.SupportSQLiteStatement;
+import androidx.sqlite.db.SupportSQLiteStatement;
 
+import com.tencent.wcdb.database.SQLiteConstraintException;
 import com.tencent.wcdb.database.SQLiteStatement;
 
 import java.io.IOException;
@@ -79,7 +80,12 @@ class WCDBStatement implements SupportSQLiteStatement {
 
     @Override
     public long executeInsert() {
-        return mDelegate.executeInsert();
+        try {
+            return mDelegate.executeInsert();
+        } catch (SQLiteConstraintException ex) {
+            // 兼容新版Room的Upsert注解
+            throw new android.database.sqlite.SQLiteConstraintException(ex.getMessage());
+        }
     }
 
     @Override

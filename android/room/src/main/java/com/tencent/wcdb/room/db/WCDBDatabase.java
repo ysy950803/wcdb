@@ -16,18 +16,19 @@
 
 package com.tencent.wcdb.room.db;
 
-import android.arch.persistence.db.SimpleSQLiteQuery;
-import android.arch.persistence.db.SupportSQLiteDatabase;
-import android.arch.persistence.db.SupportSQLiteQuery;
-import android.arch.persistence.db.SupportSQLiteStatement;
 import android.content.ContentValues;
 import android.database.Cursor;
 import android.database.SQLException;
 import android.database.sqlite.SQLiteTransactionListener;
 import android.os.Build;
 import android.os.CancellationSignal;
-import android.support.annotation.RequiresApi;
 import android.util.Pair;
+
+import androidx.annotation.RequiresApi;
+import androidx.sqlite.db.SimpleSQLiteQuery;
+import androidx.sqlite.db.SupportSQLiteDatabase;
+import androidx.sqlite.db.SupportSQLiteQuery;
+import androidx.sqlite.db.SupportSQLiteStatement;
 
 import com.tencent.wcdb.database.SQLiteCursor;
 import com.tencent.wcdb.database.SQLiteCursorDriver;
@@ -170,14 +171,14 @@ public class WCDBDatabase implements SupportSQLiteDatabase {
         return mDelegate.rawQueryWithFactory(new SQLiteDatabase.CursorFactory() {
             @Override
             public com.tencent.wcdb.Cursor newCursor(SQLiteDatabase db, SQLiteCursorDriver masterQuery,
-                    String editTable, SQLiteProgram query) {
+                                                     String editTable, SQLiteProgram query) {
                 supportQuery.bindTo(new WCDBProgram(query));
                 return SQLiteCursor.FACTORY.newCursor(db, masterQuery, editTable, query);
             }
 
             @Override
             public SQLiteProgram newQuery(SQLiteDatabase db, String query, Object[] bindArgs,
-                    com.tencent.wcdb.support.CancellationSignal cancellationSignalForPrepare) {
+                                          com.tencent.wcdb.support.CancellationSignal cancellationSignalForPrepare) {
                 return SQLiteCursor.FACTORY.newQuery(db, query, bindArgs, cancellationSignalForPrepare);
             }
         }, supportQuery.getSql(), null, null);
@@ -186,7 +187,7 @@ public class WCDBDatabase implements SupportSQLiteDatabase {
     @Override
     @RequiresApi(api = Build.VERSION_CODES.JELLY_BEAN)
     public Cursor query(final SupportSQLiteQuery supportQuery,
-            CancellationSignal cancellationSignal) {
+                        CancellationSignal cancellationSignal) {
 
         final com.tencent.wcdb.support.CancellationSignal realSignal;
         if (cancellationSignal != null) {
@@ -209,14 +210,14 @@ public class WCDBDatabase implements SupportSQLiteDatabase {
         return mDelegate.rawQueryWithFactory(new SQLiteDatabase.CursorFactory() {
             @Override
             public com.tencent.wcdb.Cursor newCursor(SQLiteDatabase db, SQLiteCursorDriver masterQuery,
-                    String editTable, SQLiteProgram query) {
+                                                     String editTable, SQLiteProgram query) {
                 supportQuery.bindTo(new WCDBProgram(query));
                 return SQLiteCursor.FACTORY.newCursor(db, masterQuery, editTable, query);
             }
 
             @Override
             public SQLiteProgram newQuery(SQLiteDatabase db, String query, Object[] bindArgs,
-                    com.tencent.wcdb.support.CancellationSignal cancellationSignalForPrepare) {
+                                          com.tencent.wcdb.support.CancellationSignal cancellationSignalForPrepare) {
                 return SQLiteCursor.FACTORY.newQuery(db, query, bindArgs, cancellationSignalForPrepare);
             }
         }, supportQuery.getSql(), null, null, realSignal);
@@ -241,7 +242,7 @@ public class WCDBDatabase implements SupportSQLiteDatabase {
 
     @Override
     public int update(String table, int conflictAlgorithm, ContentValues values, String whereClause,
-            Object[] whereArgs) {
+                      Object[] whereArgs) {
         // taken from SQLiteDatabase class.
         if (values == null || values.size() == 0) {
             throw new IllegalArgumentException("Empty values");

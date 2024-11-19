@@ -1,7 +1,7 @@
 apply plugin: 'com.android.library'
-apply from: rootProject.file('gradle/WeChatPublish.gradle')
+//apply from: rootProject.file('gradle/WeChatPublish.gradle')
 
-artifactId = 'room'
+//artifactId = 'room'
 
 android {
     compileSdkVersion 28
@@ -13,7 +13,7 @@ android {
         versionCode 1
         versionName version
 
-        testInstrumentationRunner "android.support.test.runner.AndroidJUnitRunner"
+//        testInstrumentationRunner "android.support.test.runner.AndroidJUnitRunner"
 
     }
     buildTypes {
@@ -27,20 +27,21 @@ android {
 dependencies {
     api project(':wcdb')
 
-    api 'android.arch.persistence.room:runtime:1.1.1'
-    annotationProcessor 'android.arch.persistence.room:compiler:1.1.1'
+//    api 'android.arch.persistence.room:runtime:1.1.1'
+//    annotationProcessor 'android.arch.persistence.room:compiler:1.1.1'
+    implementation("androidx.sqlite:sqlite:2.4.0")
 }
 
-wechatPublish {
-    publishAllVariants true
-
-    publishToBintray {
-        repo = 'wcdb'
-        name = 'room'
-        desc = ''
-        websiteUrl = 'https://github.com/Tencent/wcdb'
-        issueTrackerUrl = 'https://github.com/Tencent/wcdb/issues'
-        vcsUrl = 'https://github.com/Tencent/wcdb.git'
-        licenses = ['BSD 3-Clause']
-    }
-}
+//wechatPublish {
+//    publishAllVariants true
+//
+//    publishToBintray {
+//        repo = 'wcdb'
+//        name = 'room'
+//        desc = ''
+//        websiteUrl = 'https://github.com/Tencent/wcdb'
+//        issueTrackerUrl = 'https://github.com/Tencent/wcdb/issues'
+//        vcsUrl = 'https://github.com/Tencent/wcdb.git'
+//        licenses = ['BSD 3-Clause']
+//    }
+//}

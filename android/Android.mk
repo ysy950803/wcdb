@@ -25,6 +25,7 @@ LOCAL_SRC_FILES := \
 
 LOCAL_LDLIBS := -llog -lz -ldl -latomic
 LOCAL_LDFLAGS := -Wl,--gc-sections -Wl,--version-script=$(root_path)/android/wcdb.map
+LOCAL_LDFLAGS += "-Wl,-z,max-page-size=16384"
 
 LOCAL_STATIC_LIBRARIES := \
 	wcdb-repair \
